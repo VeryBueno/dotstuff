@@ -9,6 +9,9 @@ set expandtab
 set softtabstop=3
 set autoindent
 
+" synax highlighting
+syntax on
+
 " line numbers
 set number
 
@@ -31,6 +34,7 @@ set ttimeoutlen=50
 
 "mouse stuff yo
 set mouse=a
+
 " don't beep, just make the terminal flash.
 set vb
 
@@ -65,12 +69,26 @@ iabbrev Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do e
 execute pathogen#infect()
 source ~/.vim/bundle/vim-flake8/ftplugin/python_flake8.vim
 
+" Commonly included scripts
+iabbrev jqueryscript <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+
+iabbrev angularscript <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+
+iabbrev bootstrapcss <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+
+iabbrev bootstrapscript <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+" Highlight current line
 set cursorline
+
+" Color compatibility stuff
 if match($TERM, "screen")!=-1
   set term=xterm
 endif
+
 " map control-backspace to delete the previous word
 imap <C-BS> <C-W>
+
 " ex command for toggling hex mode - define mapping if desired
 command -bar Hexmode call ToggleHex()
 
@@ -111,6 +129,8 @@ function ToggleHex()
   let &readonly=l:oldreadonly
   let &modifiable=l:oldmodifiable
 endfunction
+
+" Brackets
 inoremap {      {}<Left>
 inoremap {<CR>  {<CR>}<Esc>O<Tab>
 inoremap {{     {
