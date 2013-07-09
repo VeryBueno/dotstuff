@@ -59,13 +59,27 @@ imap <c-L> <Esc><c-L>
 set ignorecase
 set smartcase
 
+" realtime search highlighting, like in browsers.
+set incsearch
+
 " Display tabs and trailing spaces visually
 set list listchars=tab:\ \ ,trail:·
 
 " minimum number of lines above and below cursor
 set scrolloff=3
 
+" show matching brackets
+set showmatch
+
+" dictionary completion
+au FileType javascript set complete+=k$HOME/.vim/dict/javascript.dict
+au FileType html set complete+=k$HOME/.vim/dict/javascript.dict
+au FileType python set complete+=k$HOME/.vim/dict/python.dict
+
+let g:SuperTabDefaultCompletionType="context"
+
 iabbrev Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+
 execute pathogen#infect()
 source ~/.vim/bundle/vim-flake8/ftplugin/python_flake8.vim
 
@@ -135,3 +149,4 @@ inoremap {      {}<Left>
 inoremap {<CR>  {<CR>}<Esc>O<Tab>
 inoremap {{     {
 inoremap {}     {}
+
