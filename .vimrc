@@ -19,6 +19,11 @@ set number
 set t_Co=256
 colorscheme xoria256
 
+" Color compatibility stuff
+if match($TERM, "screen")!=-1
+  set term=xterm
+endif
+
 " don't autoindent on pastes
 set pastetoggle=<F2>
 
@@ -32,7 +37,7 @@ map k gk
 " make esc work fast
 set ttimeoutlen=50
 
-"mouse stuff yo
+" enable mouse interaction
 set mouse=a
 
 " don't beep, just make the terminal flash.
@@ -50,7 +55,6 @@ set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif,*.ico
 
 " save on ctrl+L
-imap <C-BS> <C-W>
 nmap <c-L> :w<CR>
 imap <c-L> <Esc>:w<CR>a
 imap <c-L> <Esc><c-L>
@@ -75,7 +79,6 @@ set showmatch
 au FileType javascript set complete+=k$HOME/.vim/dict/javascript.dict
 au FileType html set complete+=k$HOME/.vim/dict/javascript.dict
 au FileType python set complete+=k$HOME/.vim/dict/python.dict
-
 let g:SuperTabDefaultCompletionType="context"
 
 iabbrev Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
@@ -85,23 +88,12 @@ source ~/.vim/bundle/vim-flake8/ftplugin/python_flake8.vim
 
 " Commonly included scripts
 iabbrev jqueryscript <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-
 iabbrev angularscript <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-
 iabbrev bootstrapcss <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-
 iabbrev bootstrapscript <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 
 " Highlight current line
 set cursorline
-
-" Color compatibility stuff
-if match($TERM, "screen")!=-1
-  set term=xterm
-endif
-
-" map control-backspace to delete the previous word
-imap <C-BS> <C-W>
 
 " ex command for toggling hex mode - define mapping if desired
 command -bar Hexmode call ToggleHex()
@@ -144,9 +136,16 @@ function ToggleHex()
   let &modifiable=l:oldmodifiable
 endfunction
 
-" Brackets
-inoremap {      {}<Left>
+" Matching brackets, parens
+inoremap {<Space>      {}<Left>
 inoremap {<CR>  {<CR>}<Esc>O<Tab>
-inoremap {{     {
 inoremap {}     {}
+
+inoremap (<Space>      ()Left>
+inoremap (<CR>  (<CR>)<Esc>O<Tab>
+inoremap ()     ()
+
+inoremap [<Space>      []Left>
+inoremap [<CR>  [<CR>]<Esc>O<Tab>
+inoremap []     []
 
