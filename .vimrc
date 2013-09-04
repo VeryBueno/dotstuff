@@ -97,6 +97,8 @@ set showmatch
 au FileType javascript set complete+=k$HOME/.vim/dict/javascript.dict
 au FileType html set complete+=k$HOME/.vim/dict/javascript.dict
 au FileType html set complete+=k$HOME/.vim/dict/css.dict
+au FileType html set complete+=k$HOME/.vim/dict/html.dict
+au FileType css set complete+=k$HOME/.vim/dict/css.dict
 au FileType python set complete+=k$HOME/.vim/dict/python.dict
 let g:SuperTabDefaultCompletionType="context"
 
