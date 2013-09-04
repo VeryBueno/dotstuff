@@ -1,6 +1,13 @@
 " use vim settings instead of vi settings.
 set nocompatible
 
+" use bash because fish isn't POSIX compliant.
+set shell=bash
+
+" make backspace not stupid on some machines
+set backspace=2
+
+
 " indentation things
 set tabstop=2
 set shiftwidth=3
@@ -8,6 +15,12 @@ set smarttab
 set expandtab
 set softtabstop=3
 set autoindent
+filetype indent on
+filetype plugin on
+
+" colors and chars for indent guides
+let g:indentLine_color_term=237
+let g:indentLine_char = '┆'
 
 " synax highlighting
 syntax on
@@ -78,6 +91,7 @@ set showmatch
 " dictionary completion
 au FileType javascript set complete+=k$HOME/.vim/dict/javascript.dict
 au FileType html set complete+=k$HOME/.vim/dict/javascript.dict
+au FileType html set complete+=k$HOME/.vim/dict/css.dict
 au FileType python set complete+=k$HOME/.vim/dict/python.dict
 let g:SuperTabDefaultCompletionType="context"
 
@@ -136,16 +150,9 @@ function ToggleHex()
   let &modifiable=l:oldmodifiable
 endfunction
 
-" Matching brackets, parens
+" Brackets
 inoremap {<Space>      {}<Left>
 inoremap {<CR>  {<CR>}<Esc>O<Tab>
-inoremap {}     {}
-
-inoremap (<Space>      ()Left>
 inoremap (<CR>  (<CR>)<Esc>O<Tab>
-inoremap ()     ()
-
-inoremap [<Space>      []Left>
-inoremap [<CR>  [<CR>]<Esc>O<Tab>
-inoremap []     []
+inoremap {}     {}
 
